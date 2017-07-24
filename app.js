@@ -79,8 +79,6 @@ function checkDB() {
   if (newBlockCount != 0 && newBlockCount != undefined) {
       console.log(newBlockCount)
       client.get(newBlockCount, function(err, reply) {
-        // reply is null when the key is missing
-        console.log("hi "+reply);
         if(reply == null) {
           getBlocks();
         } else {
@@ -99,7 +97,6 @@ function getBlocks() {
     if (newBlockCount != 0 && i < newBlockCount) {
       walletSIGT.getBlockHash(i, function(err,res) {
         client.set(i, res);
-        console.log(i + '    ' + res);
         checkID()
       })
     } else if (i == newBlockCount) {
@@ -126,7 +123,6 @@ function getBlockInfo(i, key) {
   walletSIGT.getBlock(key, function(err,res) {
     res = JSON.stringify(res)
     client.set('block'+i, res);
-    console.log(i + '    ' + [res]);
   });
   
   if (i == newBlockCount) {
@@ -192,7 +188,6 @@ function renderBlockInfo() {
       });
     } else if (query.address != null) {
       walletSIGT.getReceivedByAddress(query.address, function(err,res) {
-        console.log(res)
         renderItem(res);
       });
     }
