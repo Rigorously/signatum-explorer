@@ -1,2 +1,2 @@
 # Signatum Project Community built Explorer
-Please lookat LICENSE </br>
+Please look at LICENSE </br>
